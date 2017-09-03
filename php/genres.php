@@ -44,7 +44,7 @@
       <button class="genre1" id="10752" name="WAR">War</button>
       <button class="genre1" id="9648" name="MYSTERY">Mystery</button>
       <button class="genre1" id="10402" name="MUSIC">Music</button>
-      <button class="genre1" id="9648" name="MYSTERY">Mystery</button>
+      <button class="genre1" id="10770" name="TV">Tv Movie</button>
 
 
     </div>
