@@ -9,7 +9,7 @@ setInterval(function(){
   $('.loader').fadeOut("fast");
   document.getElementById("bottom").style.display = "block";
   document.getElementById("outer").style.display = "block";
-},1000);
+},3000);
 
  var r = document.getElementsByClassName('poster');
  for(var i=0;i<r.length;i++){
