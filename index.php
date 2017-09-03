@@ -60,8 +60,8 @@
     curl_close($curl);
     $dat = json_decode($response); 
     if ($err) {
-      //echo "cURL Error #:" . $err;
     	header("Location: ./php/error.php");
+
     } else {
       ?><div class="scroll">
       <div class="wrap" id="slide">
