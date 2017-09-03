@@ -4,9 +4,9 @@
 
 <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <script src="../js/jQuery.js"></script>
+  <script src="../js/bootstrap.js"></script>
   <title>Trailers</title>
   <link rel="stylesheet" type="text/css" href="../css/styles.css">
   <script type="text/javascript" src="../js/main.js"></script>
@@ -17,8 +17,12 @@
   <div id="smallBox"></div>
 </div>
 <div id="outer">
-<nav id="nav">
-  <center><h2><a href="../index.php">Movie Trailers</a></h2></center>
+<nav id="nav2">
+  <h2><a href="../index.php">Movie Trailers</a></h2>
+  <form class="formwrap fw" id="main" action=./result.php method=POST>
+        <input id="input" type="text" name='input' placeholder="Search here..." required>
+          <button id="button" type="submit">Search</button>
+    </form>
 </nav>
 
 
@@ -104,9 +108,10 @@ $w = $_GET['ide'];
 curl_setopt_array($curl, array(
   CURLOPT_URL => "https://api.themoviedb.org/3/movie/$w?language=en-US&api_key=8448903d151180f7e5b479d58032281a",
   CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_SSL_VERIFYPEER => false,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
+  CURLOPT_TIMEOUT => 100,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "GET",
   CURLOPT_POSTFIELDS => "{}",
@@ -119,7 +124,9 @@ curl_close($curl);
 
 $dat = json_decode($response); 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  // echo "cURL Error #:" . $err;
+      header("Location: ./error.php");
+
 } else {
     // echo $response;
     $i=$dat;
@@ -158,8 +165,8 @@ if ($err) {
     ?></div><br><?php
 }
 ?>
-    <div id="bottom"></div>
-</div>
+    
+</div><div id="bottom"></div>
 <script type="text/javascript" src="../js/main.js"></script>
 </body>
 </html>

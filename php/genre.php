@@ -6,7 +6,7 @@
   <script src="../js/jQuery.js"></script>
   <script src="../js/bootstrap.js"></script>
   <script type="text/javascript" src="../js/main.js"></script>
-  <title>Search Results</title>
+  <title>Genre | Search Results</title>
   <link rel="stylesheet" type="text/css" href="../css/styles.css">
 
 </head>
@@ -32,16 +32,16 @@
 
 $curl = curl_init();
 
-$q = htmlspecialchars($_POST['input']);
+ $w = $_GET['ide'];
+ $name = $_GET['name'];
 
-?> <div class="titl res"> <?php
-      echo "Search results for ".$q.":";
+ ?> <div class="titl res"> <?php
+      echo "Genre: ".$name;
       ?></div><?php
 
-$q=str_replace(' ','+',$q);
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=$q&language=en-US&api_key=8448903d151180f7e5b479d58032281a",
+  CURLOPT_URL => "https://api.themoviedb.org/3/discover/movie?with_genres=$w&page=1&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=8448903d151180f7e5b479d58032281a",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_SSL_VERIFYPEER => false,
   CURLOPT_ENCODING => "",
@@ -58,15 +58,15 @@ $err = curl_error($curl);
 curl_close($curl);
 $dat = json_decode($response); 
 if ($err) {
-  // echo "cURL Error #:" . $err;
+  <!-- echo "cURL Error #:" . $err; -->
       header("Location: ./error.php");
-
+  
 } 
 else if($dat->results == NULL){
-  ?><div class="titl res"><?php echo("Nothing found :( ");?></div><?php
+  echo("Nothimg found :( ");
 }
 else {
-    // echo $response;
+  
   
   foreach ($dat -> results as $i) {
     
