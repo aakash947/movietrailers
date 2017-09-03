@@ -58,9 +58,8 @@ $err = curl_error($curl);
 curl_close($curl);
 $dat = json_decode($response); 
 if ($err) {
-  <!-- echo "cURL Error #:" . $err; -->
       header("Location: ./error.php");
-  
+
 } 
 else if($dat->results == NULL){
   echo("Nothimg found :( ");
